@@ -9,7 +9,9 @@ Pagina singola di attesa per ASTERIA. Countdown al **1 gennaio 2027, 00:00 Europ
 | `index.html` | La pagina. Statica, zero dipendenze, i18n in 8 lingue via JS. |
 | `og.html` | Sorgente per l'immagine di anteprima link. |
 | `og.png` | Immagine OG generata (1200×630). |
+| `favicon.ico`, `favicon-*.png`, `apple-touch-icon.png` | Monogramma A. |
 | `robots.txt`, `sitemap.xml` | SEO di base. |
+| `CNAME` | Dominio custom per GitHub Pages. |
 
 ## Sviluppo
 
