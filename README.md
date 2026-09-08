@@ -7,8 +7,7 @@ Pagina singola di attesa per ASTERIA. Countdown al **1 gennaio 2027, 00:00 Europ
 | File | Ruolo |
 | --- | --- |
 | `index.html` | La pagina. Statica, zero dipendenze, i18n in 8 lingue via JS. |
-| `og.html` | Sorgente per l'immagine di anteprima link. |
-| `og.png` | Immagine OG generata (1200×630). |
+| `og.png` | Anteprima link, 1200×1200: il monogramma, nient'altro. |
 | `favicon.ico`, `favicon-*.png`, `apple-touch-icon.png` | Monogramma A. |
 | `robots.txt`, `sitemap.xml` | SEO di base. |
 | `CNAME` | Dominio custom per GitHub Pages. |
@@ -17,13 +16,20 @@ Pagina singola di attesa per ASTERIA. Countdown al **1 gennaio 2027, 00:00 Europ
 
 Apri `index.html` nel browser. Non serve build.
 
-## Rigenerare `og.png`
+## Rigenerare icone e anteprima
+
+Dal logo sorgente (quadrato, sfondo nero incluso):
 
 ```sh
-"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
-  --headless --disable-gpu --hide-scrollbars \
-  --screenshot=og.png --window-size=1200,630 --virtual-time-budget=6000 og.html
+sips -s format png -z 1200 1200 logo.jpg --out og.png
+sips -c 900 900 logo.jpg --out /tmp/mark.png -s format png   # toglie il padding
+for s in 32 180 192; do sips -z $s $s /tmp/mark.png --out /tmp/icon-$s.png; done
 ```
+
+Poi `favicon-32.png`, `favicon-192.png`, `apple-touch-icon.png` (180) e il
+`favicon.ico` multi-size (16/32/48).
+
+Se cambi `og.png`, aggiorna `og:image:width` / `height` in `index.html`.
 
 ## Modificare il countdown
 
