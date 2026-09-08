@@ -20,14 +20,17 @@
   }
   body::before {
     content: ""; position: absolute; inset: 0;
-    background: radial-gradient(760px 500px at 50% 42%, rgba(216,169,79,.16), transparent 70%);
+    background:
+      radial-gradient(780px 520px at 50% 38%, rgba(23,74,80,.62), transparent 72%),
+      radial-gradient(380px 240px at 50% 100%, rgba(62,214,196,.07), transparent 75%);
   }
   .wrap { position: relative; display: flex; flex-direction: column; align-items: center; gap: 34px; }
-  .mark { font-family: "Archivo", sans-serif; font-size: 30px; color: #d8a94f; line-height: 1; }
+  .mark { font-family: "Archivo", sans-serif; font-size: 30px; color: #b88a3b; line-height: 1; }
   h1 { font-family: "Archivo", sans-serif; font-weight: 400; font-size: 116px; letter-spacing: .22em; text-indent: .22em; line-height: 1; }
   p { font-size: 26px; letter-spacing: .06em; opacity: .8; margin-top: -14px; }
   hr { width: 360px; height: 1px; border: 0; background: linear-gradient(90deg, transparent, #efe8d824 20%, #efe8d824 80%, transparent); }
-  .date { font-family: "JetBrains Mono", monospace; font-size: 15px; letter-spacing: .28em; text-transform: uppercase; color: #8b8579; }
+  .date { display: flex; align-items: center; gap: 11px; font-family: "JetBrains Mono", monospace; font-size: 15px; letter-spacing: .28em; text-transform: uppercase; color: rgba(239,232,216,.48); }
+  .signal { width: 6px; height: 6px; border-radius: 50%; background: #3ed6c4; }
 </style>
 </head>
 <body>
@@ -36,7 +39,7 @@
     <h1>ASTERIA</h1>
     <p>Il luogo di un nuovo linguaggio</p>
     <hr>
-    <div class="date">1 &middot; 1 &middot; 2027 — Zurigo</div>
+    <div class="date"><span class="signal"></span>1 &middot; 1 &middot; 2027 — Zurigo</div>
   </div>
 </body>
 </html>

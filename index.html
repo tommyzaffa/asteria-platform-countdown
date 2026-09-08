@@ -24,7 +24,7 @@
 <meta name="twitter:description" content="Il luogo di un nuovo linguaggio.">
 <meta name="twitter:image" content="https://asteriaplatform.com/og.png">
 
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23101313'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='24' fill='%23d8a94f' text-anchor='middle'%3E%E2%9C%B1%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23101313'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='24' fill='%23b88a3b' text-anchor='middle'%3E%E2%9C%B1%3C/text%3E%3C/svg%3E">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,11 +32,20 @@
 
 <style>
   :root {
-    --void: #efe8d8;
-    --ink: #101313;
-    --ink-3: #62706e;
+    /* palette ASTERIA */
+    --nero: #101313;    /* sala / presente   */
+    --petrolio: #174a50; /* memoria / mondo   */
+    --ocra: #b88a3b;    /* archivio / materia */
+    --crema: #efe8d8;   /* carta / catalogo  */
+    --cyan: #3ed6c4;    /* rete / dati / AI  */
+
+    /* tema chiaro */
+    --void: var(--crema);
+    --ink: var(--nero);
+    --muted: #174a50b8;
     --line: #174a5029;
-    --light: #b88a3b;
+    --haze: #174a501f;
+
     --font-display: "Archivo", ui-sans-serif, system-ui, sans-serif;
     --font-sans: "Cabin", var(--font-cjk), ui-sans-serif, system-ui, sans-serif;
     --font-mono: "JetBrains Mono", var(--font-cjk), ui-monospace, "SF Mono", Menlo, monospace;
@@ -47,11 +56,11 @@
 
   @media (prefers-color-scheme: dark) {
     :root {
-      --void: #101313;
-      --ink: #efe8d8;
-      --ink-3: #8b8579;
+      --void: var(--nero);
+      --ink: var(--crema);
+      --muted: #efe8d87a;
       --line: #efe8d824;
-      --light: #d8a94f;
+      --haze: #174a5099;
     }
   }
 
@@ -78,8 +87,9 @@
     position: fixed;
     inset: 0;
     pointer-events: none;
-    background: radial-gradient(60rem 40rem at 50% 38%, color-mix(in oklab, var(--light) 12%, transparent), transparent 70%);
-    opacity: .7;
+    background:
+      radial-gradient(58rem 38rem at 50% 34%, var(--haze), transparent 72%),
+      radial-gradient(26rem 20rem at 50% 100%, color-mix(in oklab, var(--cyan) 7%, transparent), transparent 75%);
   }
 
   main {
@@ -103,7 +113,7 @@
     font-family: var(--font-display);
     font-size: 1.5rem;
     line-height: 1;
-    color: var(--light);
+    color: var(--ocra);
     animation: breathe 7s ease-in-out infinite;
   }
 
@@ -167,7 +177,7 @@
     font-size: clamp(.55rem, 1.6vw, .68rem);
     letter-spacing: .22em;
     text-transform: uppercase;
-    color: var(--ink-3);
+    color: var(--muted);
   }
 
   .note {
@@ -175,7 +185,7 @@
     max-width: 30rem;
     font-size: clamp(.85rem, 2.2vw, .95rem);
     line-height: 1.75;
-    color: var(--ink-3);
+    color: var(--muted);
     text-wrap: pretty;
   }
 
@@ -199,7 +209,7 @@
     border: 1px solid var(--line);
     border-radius: 4px;
     padding: .35rem 1.6rem .35rem .6rem;
-    color: var(--ink-3);
+    color: var(--muted);
     font-family: var(--font-mono);
     font-size: .66rem;
     letter-spacing: .12em;
@@ -209,7 +219,7 @@
   }
 
   .lang select:hover,
-  .lang select:focus-visible { color: var(--ink); border-color: var(--ink-3); outline: none; }
+  .lang select:focus-visible { color: var(--ink); border-color: var(--muted); outline: none; }
 
   .lang::after {
     content: "";
@@ -221,7 +231,7 @@
     margin-top: -4px;
     border-right: 1px solid currentColor;
     border-bottom: 1px solid currentColor;
-    color: var(--ink-3);
+    color: var(--muted);
     transform: rotate(45deg);
     pointer-events: none;
   }
@@ -231,18 +241,34 @@
     left: 0;
     right: 0;
     bottom: clamp(1rem, 3vh, 1.75rem);
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .7rem;
     font-family: var(--font-mono);
     font-size: .62rem;
     letter-spacing: .24em;
     text-transform: uppercase;
-    color: var(--ink-3);
-    opacity: .55;
+    color: var(--muted);
     pointer-events: none;
   }
 
+  /* segnale: la beta è viva anche se il sito non dice nulla */
+  .signal {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--cyan);
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: .25; box-shadow: 0 0 0 0 color-mix(in oklab, var(--cyan) 40%, transparent); }
+    50%      { opacity: 1;   box-shadow: 0 0 0 4px color-mix(in oklab, var(--cyan) 0%, transparent); }
+  }
+
   @media (prefers-reduced-motion: reduce) {
-    main, .mark { animation: none; }
+    main, .mark, .signal { animation: none; }
   }
 </style>
 </head>
@@ -279,7 +305,10 @@
   <p class="note"><span id="note-a"></span><strong id="note-date"></strong><span id="note-b"></span></p>
 </main>
 
-<footer id="footer"></footer>
+<footer>
+  <span class="signal" aria-hidden="true"></span>
+  <span id="footer"></span>
+</footer>
 
 <script>
 (function () {
