@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ASTERIA</title>
+<meta name="description" content="Il luogo di un nuovo linguaggio.">
+<meta name="theme-color" content="#efe8d8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#101313" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+<meta name="application-name" content="ASTERIA">
+<link rel="canonical" href="https://asteriaplatform.com/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ASTERIA">
+<meta property="og:title" content="ASTERIA">
+<meta property="og:description" content="Il luogo di un nuovo linguaggio.">
+<meta property="og:url" content="https://asteriaplatform.com/">
+<meta property="og:image" content="https://asteriaplatform.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ASTERIA">
+<meta name="twitter:description" content="Il luogo di un nuovo linguaggio.">
+<meta name="twitter:image" content="https://asteriaplatform.com/og.png">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23101313'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='24' fill='%23d8a94f' text-anchor='middle'%3E%E2%9C%B1%3C/text%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500&family=Cabin:wght@400;500&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --void: #efe8d8;
+    --ink: #101313;
+    --ink-3: #62706e;
+    --line: #174a5029;
+    --light: #b88a3b;
+    --font-display: "Archivo", ui-sans-serif, system-ui, sans-serif;
+    --font-sans: "Cabin", var(--font-cjk), ui-sans-serif, system-ui, sans-serif;
+    --font-mono: "JetBrains Mono", var(--font-cjk), ui-monospace, "SF Mono", Menlo, monospace;
+    --font-cjk: "Hiragino Sans", "Yu Gothic", "PingFang SC", "Microsoft YaHei", sans-serif;
+    --gutter: clamp(1.25rem, 4.5vw, 3rem);
+    --ease-out-cine: cubic-bezier(.16, 1, .3, 1);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --void: #101313;
+      --ink: #efe8d8;
+      --ink-3: #8b8579;
+      --line: #efe8d824;
+      --light: #d8a94f;
+    }
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html { background-color: var(--void); }
+
+  body {
+    margin: 0;
+    min-height: 100svh;
+    display: grid;
+    place-items: center;
+    padding: clamp(3.5rem, 10vh, 5rem) var(--gutter);
+    background-color: var(--void);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(60rem 40rem at 50% 38%, color-mix(in oklab, var(--light) 12%, transparent), transparent 70%);
+    opacity: .7;
+  }
+
+  main {
+    position: relative;
+    width: 100%;
+    max-width: 44rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(2rem, 6vh, 3.25rem);
+    animation: rise 1.4s var(--ease-out-cine) both;
+  }
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: none; }
+  }
+
+  .mark {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    line-height: 1;
+    color: var(--light);
+    animation: breathe 7s ease-in-out infinite;
+  }
+
+  @keyframes breathe {
+    0%, 100% { opacity: .45; }
+    50%      { opacity: 1; }
+  }
+
+  h1 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(2.75rem, 12vw, 6.5rem);
+    letter-spacing: .22em;
+    text-indent: .22em;
+    line-height: 1;
+  }
+
+  .tagline {
+    margin: -1.25rem 0 0;
+    font-size: clamp(.95rem, 2.4vw, 1.15rem);
+    letter-spacing: .06em;
+    opacity: .8;
+    text-wrap: balance;
+  }
+
+  .rule {
+    width: min(100%, 22rem);
+    height: 1px;
+    border: 0;
+    margin: 0;
+    background: linear-gradient(90deg, transparent, var(--line) 20%, var(--line) 80%, transparent);
+  }
+
+  .countdown {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: clamp(.75rem, 4vw, 2.25rem);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .6rem;
+    min-width: clamp(3.25rem, 14vw, 5rem);
+  }
+
+  .unit b {
+    font-family: var(--font-mono);
+    font-weight: 300;
+    font-size: clamp(1.9rem, 8vw, 3.25rem);
+    line-height: 1;
+    letter-spacing: .02em;
+  }
+
+  .unit span {
+    font-family: var(--font-mono);
+    font-size: clamp(.55rem, 1.6vw, .68rem);
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+
+  .note {
+    margin: 0;
+    max-width: 30rem;
+    font-size: clamp(.85rem, 2.2vw, .95rem);
+    line-height: 1.75;
+    color: var(--ink-3);
+    text-wrap: pretty;
+  }
+
+  .note strong {
+    font-weight: 500;
+    color: var(--ink);
+    opacity: .9;
+  }
+
+  /* language selector */
+  .lang {
+    position: fixed;
+    top: clamp(1rem, 3vh, 1.75rem);
+    right: var(--gutter);
+    z-index: 2;
+  }
+
+  .lang select {
+    appearance: none;
+    background: transparent;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: .35rem 1.6rem .35rem .6rem;
+    color: var(--ink-3);
+    font-family: var(--font-mono);
+    font-size: .66rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: color .25s, border-color .25s;
+  }
+
+  .lang select:hover,
+  .lang select:focus-visible { color: var(--ink); border-color: var(--ink-3); outline: none; }
+
+  .lang::after {
+    content: "";
+    position: absolute;
+    right: .6rem;
+    top: 50%;
+    width: 5px;
+    height: 5px;
+    margin-top: -4px;
+    border-right: 1px solid currentColor;
+    border-bottom: 1px solid currentColor;
+    color: var(--ink-3);
+    transform: rotate(45deg);
+    pointer-events: none;
+  }
+
+  footer {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: clamp(1rem, 3vh, 1.75rem);
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: .62rem;
+    letter-spacing: .24em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    opacity: .55;
+    pointer-events: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    main, .mark { animation: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="lang">
+  <select id="lang" aria-label="Language">
+    <option value="it">Italiano</option>
+    <option value="en">English</option>
+    <option value="fr">Français</option>
+    <option value="de">Deutsch</option>
+    <option value="es">Español</option>
+    <option value="pt">Português</option>
+    <option value="ja">日本語</option>
+    <option value="zh">中文</option>
+  </select>
+</div>
+
+<main>
+  <div class="mark" aria-hidden="true">&#10033;</div>
+
+  <h1>ASTERIA</h1>
+  <p class="tagline" id="tagline">Il luogo di un nuovo linguaggio</p>
+
+  <hr class="rule">
+
+  <div class="countdown" role="timer" aria-live="off">
+    <div class="unit"><b id="d">—</b><span id="ld">Giorni</span></div>
+    <div class="unit"><b id="h">—</b><span id="lh">Ore</span></div>
+    <div class="unit"><b id="m">—</b><span id="lm">Minuti</span></div>
+    <div class="unit"><b id="s">—</b><span id="ls">Secondi</span></div>
+  </div>
+
+  <p class="note"><span id="note-a"></span><strong id="note-date"></strong><span id="note-b"></span></p>
+</main>
+
+<footer id="footer"></footer>
+
+<script>
+(function () {
+  'use strict';
+
+  // 1 gennaio 2027, 00:00 Europe/Zurich (CET, UTC+1)
+  var TARGET = Date.UTC(2026, 11, 31, 23, 0, 0);
+
+  var I18N = {
+    it: { tagline: 'Il luogo di un nuovo linguaggio', u: ['Giorni', 'Ore', 'Minuti', 'Secondi'],
+          a: 'Il ', date: '4 ottobre', b: ' un annuncio speciale rivelerà cosa attende alla fine di questo conto alla rovescia.',
+          city: 'Zurigo', date_short: '1 · 1 · 2027' },
+    en: { tagline: 'The home of a new language', u: ['Days', 'Hours', 'Minutes', 'Seconds'],
+          a: 'On ', date: '4 October', b: ', a special announcement will reveal what awaits at the end of this countdown.',
+          city: 'Zurich', date_short: '1 · 1 · 2027' },
+    fr: { tagline: 'Le lieu d’un nouveau langage', u: ['Jours', 'Heures', 'Minutes', 'Secondes'],
+          a: 'Le ', date: '4 octobre', b: ', une annonce spéciale révélera ce qui attend au terme de ce compte à rebours.',
+          city: 'Zurich', date_short: '1 · 1 · 2027' },
+    de: { tagline: 'Der Ort einer neuen Sprache', u: ['Tage', 'Stunden', 'Minuten', 'Sekunden'],
+          a: 'Am ', date: '4. Oktober', b: ' enthüllt eine besondere Ankündigung, was am Ende dieses Countdowns wartet.',
+          city: 'Zürich', date_short: '1 · 1 · 2027' },
+    es: { tagline: 'El lugar de un nuevo lenguaje', u: ['Días', 'Horas', 'Minutos', 'Segundos'],
+          a: 'El ', date: '4 de octubre', b: ', un anuncio especial revelará lo que espera al final de esta cuenta atrás.',
+          city: 'Zúrich', date_short: '1 · 1 · 2027' },
+    pt: { tagline: 'O lugar de uma nova linguagem', u: ['Dias', 'Horas', 'Minutos', 'Segundos'],
+          a: 'A ', date: '4 de outubro', b: ', um anúncio especial revelará o que aguarda no final desta contagem decrescente.',
+          city: 'Zurique', date_short: '1 · 1 · 2027' },
+    ja: { tagline: '新しい言語が生まれる場所', u: ['日', '時間', '分', '秒'],
+          a: '', date: '10月4日', b: '、特別な発表が、このカウントダウンの先にあるものを明らかにします。',
+          city: 'チューリッヒ', date_short: '2027 · 1 · 1' },
+    zh: { tagline: '新语言的所在', u: ['天', '时', '分', '秒'],
+          a: '', date: '10月4日', b: '，一则特别公告将揭晓这场倒计时尽头所等待的一切。',
+          city: '苏黎世', date_short: '2027 · 1 · 1' }
+  };
+
+  var el = {
+    d: document.getElementById('d'), h: document.getElementById('h'),
+    m: document.getElementById('m'), s: document.getElementById('s'),
+    ld: document.getElementById('ld'), lh: document.getElementById('lh'),
+    lm: document.getElementById('lm'), ls: document.getElementById('ls'),
+    tagline: document.getElementById('tagline'),
+    noteA: document.getElementById('note-a'),
+    noteDate: document.getElementById('note-date'),
+    noteB: document.getElementById('note-b'),
+    footer: document.getElementById('footer'),
+    select: document.getElementById('lang')
+  };
+
+  function pad(n) { return n < 10 ? '0' + n : String(n); }
+
+  function tick() {
+    var t = Math.floor(Math.max(0, TARGET - Date.now()) / 1000);
+    el.d.textContent = pad(Math.floor(t / 86400));
+    el.h.textContent = pad(Math.floor(t / 3600) % 24);
+    el.m.textContent = pad(Math.floor(t / 60) % 60);
+    el.s.textContent = pad(t % 60);
+  }
+
+  function apply(code) {
+    var t = I18N[code];
+    document.documentElement.lang = code === 'zh' ? 'zh-Hans' : code;
+    document.title = 'ASTERIA';
+    el.tagline.textContent = t.tagline;
+    el.ld.textContent = t.u[0];
+    el.lh.textContent = t.u[1];
+    el.lm.textContent = t.u[2];
+    el.ls.textContent = t.u[3];
+    el.noteA.textContent = t.a;
+    el.noteDate.textContent = t.date;
+    el.noteB.textContent = t.b;
+    el.footer.textContent = t.date_short + ' — ' + t.city;
+    el.select.value = code;
+    try { localStorage.setItem('asteria-lang', code); } catch (e) {}
+  }
+
+  function detect() {
+    var saved;
+    try { saved = localStorage.getItem('asteria-lang'); } catch (e) {}
+    if (saved && I18N[saved]) return saved;
+
+    var list = navigator.languages || [navigator.language || 'it'];
+    for (var i = 0; i < list.length; i++) {
+      var base = String(list[i]).toLowerCase().split('-')[0];
+      if (base === 'zh') return 'zh';
+      if (I18N[base]) return base;
+    }
+    return 'it';
+  }
+
+  el.select.addEventListener('change', function () { apply(el.select.value); });
+
+  apply(detect());
+  tick();
+  setInterval(tick, 1000);
+})();
+</script>
+
+</body>
+</html>
